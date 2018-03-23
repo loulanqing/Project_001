@@ -1,10 +1,11 @@
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import test.Dao.TestMapper;
-import userMapper.Test;
-import userMapper.User;
-import userMapper.UserDao;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by hcz on 2018-3-10.
@@ -15,8 +16,8 @@ public class TestEMP {
     public static void main(String[] args) throws IOException {
         SqlSession session=MyBatisUtil.getSqlSession();
         try {
-            UserDao mapper = session.getMapper(UserDao.class);
-            Test test = mapper.selectBlog(1);
+            TestMapper testMapper = session.getMapper(TestMapper.class);
+            test.domain.Test test = testMapper.selectByPrimaryKey((long)1);
             System.out.println(">>>>>>>>>>>>>>> " + test.getTe01());
             // do work
         } finally {
